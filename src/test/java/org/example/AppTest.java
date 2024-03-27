@@ -1,7 +1,6 @@
 package org.example;
 
 
-import junit.framework.TestCase;
 import org.example.domain.Student;
 import org.example.repository.NotaXMLRepo;
 import org.example.repository.StudentXMLRepo;
@@ -11,20 +10,19 @@ import org.example.validation.NotaValidator;
 import org.example.validation.StudentValidator;
 import org.example.validation.TemaValidator;
 import org.example.validation.ValidationException;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.Assert;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest
-    extends TestCase
-{
+public class AppTest  {
 
     public static Service service;
 
-    @BeforeAll
-    public static void setup() {
+    @Before
+    public void setup() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
         String filenameStudent = "src/fisiere/Studenti.xml";
@@ -50,7 +48,7 @@ public class AppTest
             service.addStudent(student);
         } catch (ValidationException exception) {
             System.out.println(exception);
-            assertFalse(true);
+            assert(true);
         }
 
         assert(service.findStudent(idStudent) != null);
